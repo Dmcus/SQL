@@ -1,0 +1,49 @@
+--Create a "music artists" table
+
+CREATE TABLE music_artists
+    (id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT,
+    age INTEGER);
+    
+INSERT INTO music_artists (name, age) VALUES ("The Weeknd", 32);
+INSERT INTO music_artists (name, age) VALUES ("Brent Faiyaz", 26);
+INSERT INTO music_artists (name, age) VALUES ("Cheff G", 24);
+INSERT INTO music_artists (name, age) VALUES ("Steve Aoki", 44);
+INSERT INTO music_artists (name, age) VALUES ("Drake", 35);
+INSERT INTO music_artists (name, age) VALUES ("Roy Woods", 26);
+INSERT INTO music_artists (name, age) VALUES ("Bad Buny", 28);
+INSERT INTO music_artists (name, age) VALUES ("J Balvin", 36);
+
+--Create a "singer info" table
+
+CREATE TABLE singer_info
+    (id INTEGER PRIMARY KEY AUTOINCREMENT,
+    genre TEXT,
+    song_title TEXT,
+    artist_id INTEGER);
+    
+INSERT INTO singer_info (genre, song_title, artist_id) VALUES ("R&B", "The Birds Part 2", 1);
+INSERT INTO singer_info (genre, song_title, artist_id) VALUES ("Pop", "Can't Feel My Face", 1);
+INSERT INTO singer_info (genre, song_title, artist_id) VALUES ("R&B", "F**k the World", 2);
+INSERT INTO singer_info (genre, song_title, artist_id) VALUES ("Rap", "We Getting Money", 3);
+INSERT INTO singer_info (genre, song_title, artist_id) VALUES ("Rap", "No Suburbans Pt. 2", 3);
+INSERT INTO singer_info (genre, song_title, artist_id) VALUES ("EDM", "Pursuit of Happiness", 4);
+INSERT INTO singer_info (genre, song_title, artist_id) VALUES ("R&B", "Marvin's Room", 5);
+INSERT INTO singer_info (genre, song_title, artist_id) VALUES ("Rap", "Snow White", 6);
+INSERT INTO singer_info (genre, song_title, artist_id) VALUES ("Reggaeton", "Vete", 7);
+INSERT INTO singer_info (genre, song_title, artist_id) VALUES ("Reggaeton", "Blanco", 8);
+
+--Join both tables to match them with the song they produced
+SELECT music_artists.name AS artist, singer_info.song_title AS song 
+    FROM music_artists
+    JOIN singer_info
+    ON music_artists.id = singer_info.artist_id;
+    
+--Join to display each song and which genre it's assoiciated with
+SELECT a.song_title AS song, b.genre 
+    FROM music_artists
+    OUTER LEFT JOIN singer_info a
+    ON music_artists.id = a.artist_id
+    JOIN singer_info b
+    ON music_artists.id = b.artist_id
+GROUP BY song;
