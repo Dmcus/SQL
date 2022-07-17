@@ -1,3 +1,5 @@
+--Create a "Super Bowls" table
+
 CREATE TABLE superbowls(
   Date      TEXT PRIMARY KEY,
   SB         TEXT,
@@ -10,6 +12,7 @@ CREATE TABLE superbowls(
   City       TEXT,
   State      TEXT
 );
+
 INSERT INTO superbowls(Date,SB,Winner,Winner_Pts,Loser,Loser_Pts,MVP,Stadium,City,State) VALUES ('Feb 2 2020','LIV (54)','Kansas City Chiefs',31,'San Francisco 49ers',20,'Patrick Mahomes','Hard Rock Stadium','Miami Gardens','Florida');
 INSERT INTO superbowls(Date,SB,Winner,Winner_Pts,Loser,Loser_Pts,MVP,Stadium,City,State) VALUES ('Feb 3 2019','LIII (53)','New England Patriots',13,'Los Angeles Rams',3,'Julian Edelman','Mercedes-Benz Stadium','Atlanta','Georgia');
 INSERT INTO superbowls(Date,SB,Winner,Winner_Pts,Loser,Loser_Pts,MVP,Stadium,City,State) VALUES ('Feb 4 2018','LII (52)','Philadelphia Eagles',41,'New England Patriots',33,'Nick Foles','U.S. Bank Stadium','Minneapolis','Minnesota');
@@ -66,17 +69,22 @@ INSERT INTO superbowls(Date,SB,Winner,Winner_Pts,Loser,Loser_Pts,MVP,Stadium,Cit
 INSERT INTO superbowls(Date,SB,Winner,Winner_Pts,Loser,Loser_Pts,MVP,Stadium,City,State) VALUES ('Jan 15 1967','I (1)','Green Bay Packers',35,'Kansas City Chiefs',10,'Bart Starr+','Memorial Coliseum','Los Angeles','California');
 SELECT * FROM superbowls;
 
-SELECT COUNT(*), winner, winner_pts FROM superbowls 
+--Display the teams which have won with greater than 40 points
+SELECT COUNT(*), winner, winner_pts 
+FROM superbowls 
 WHERE winner_pts > 40 GROUP BY winner;
 
+--Display all super bowl wins from the New England Patriots
 SELECT date, winner, winner_pts FROM superbowls 
 WHERE winner = "New England Patriots";
 
+--Display the top five players with most super bowl MVP nominations in descending order
 SELECT COUNT(MVP) AS nominations, MVP FROM superbowls
 GROUP BY MVP 
 ORDER BY nominations 
 DESC LIMIT 5;
 
+--Create a Tier List grading teams by number of super bowl wins, ordered by tier
 SELECT COUNT(winner), winner, 
     CASE
         WHEN COUNT(winner) = 6 THEN "S"
@@ -97,10 +105,12 @@ ORDER BY
         ELSE 6
     END;
 
+--Display the losing teams with the least amount of points in descending order
 SELECT MIN(loser_pts), loser FROM superbowls
 GROUP BY loser
 ORDER BY MIN(loser_pts) DESC;
 
+--Display super bowl games where the winner had greater than 65 points and the loser had less than 7 points in descending order
 SELECT SB, winner_pts, winner, loser_pts, loser, 
 winner_pts + loser_pts AS total_pts FROM superbowls 
 WHERE total_pts > 65 OR loser_pts < 7
