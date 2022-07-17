@@ -1,6 +1,10 @@
 --Create an "Electronics" Database
 
-CREATE TABLE electronics (id INTEGER PRIMARY KEY, product TEXT, price INTEGER);
+CREATE TABLE electronics(
+id INTEGER PRIMARY KEY,
+product TEXT,
+price INTEGER
+);
 
 INSERT INTO electronics VALUES (1, 'Sony TV', 955);
 INSERT INTO electronics VALUES (2, 'Samsung Phone', 750);
