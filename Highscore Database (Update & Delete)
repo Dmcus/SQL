@@ -1,0 +1,25 @@
+--Create a "highscores" table
+
+CREATE TABLE highscores
+    (id INTEGER PRIMARY KEY AUTOINCREMENT,
+    username TEXT,
+    score INTEGER,
+    hrs_played INTEGER);
+
+INSERT INTO highscores (username, score, hrs_played) VALUES ("Mew", 22601, 42);
+INSERT INTO highscores (username, score, hrs_played) VALUES ("BuuuddaaTv", 67299, 137);
+INSERT INTO highscores (username, score, hrs_played) VALUES ("DZDkyros", 100531, 163);
+INSERT INTO highscores (username, score, hrs_played) VALUES ("Xeriphim", 7014, 17);
+INSERT INTO highscores (username, score, hrs_played) VALUES ("DinoShotYa", 84550, 144);
+
+--Display all information from table the scores in descending order
+SELECT * FROM highscores
+    ORDER BY score DESC;
+ 
+--Remove any highscores where hours played is less than 20
+DELETE FROM highscores
+    WHERE hrs_played < 20;
+    
+--Update the score set where the id is 1 
+UPDATE highscores SET score = 8262
+    WHERE id = 1;
