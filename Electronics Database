@@ -1,0 +1,29 @@
+--Create an "Electronics" Database
+
+CREATE TABLE electronics (id INTEGER PRIMARY KEY, product TEXT, price INTEGER);
+
+INSERT INTO electronics VALUES (1, 'Sony TV', 955);
+INSERT INTO electronics VALUES (2, 'Samsung Phone', 750);
+INSERT INTO electronics VALUES (3, 'Apple Airpods', 250);
+INSERT INTO electronics VALUES (4, 'Logitec Keyboard', 200);
+INSERT INTO electronics VALUES (5, 'Macbook Pro', 1400);
+INSERT INTO electronics VALUES (6, 'ASUS Monitor', 250);
+INSERT INTO electronics VALUES (7, 'Type-C Cable', 15);
+INSERT INTO electronics VALUES (8, 'Sound Bar', 300);
+INSERT INTO electronics VALUES (9, 'Google Home Mini', 35);
+INSERT INTO electronics VALUES (10, 'RGB Lighting Strip', 45);
+INSERT INTO electronics VALUES (11, 'Bose Headphones', 400);
+INSERT INTO electronics VALUES (12, 'Portable Charger', 80);
+INSERT INTO electronics VALUES (13, 'iPhone 13 Pro Case', 25);
+INSERT INTO electronics VALUES (14, 'Gaming PC', 1800);
+INSERT INTO electronics VALUES (15, 'ASTRO A40', 200);
+
+--display the database's items priced under $500
+SELECT * FROM electronics;
+SELECT * FROM electronics WHERE price <500 ORDER BY price;
+
+--display the database's top five most expensive items
+ordered by descending price
+SELECT * FROM electronics
+ORDER BY price DESC
+LIMIT 5;
